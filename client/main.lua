@@ -192,7 +192,7 @@ local function createZone(zoneInfo)
             options = {
                 {
                     name = zoneInfo.groupName..'_menu',
-                    icon = 'right-to-bracket',
+                    icon = 'fa-solid fa-briefcase',
                     label = zoneInfo.type == 'gang' and locale('menu.gang_menu') or locale('menu.boss_menu'),
                     canInteract = function()
                         return zoneInfo.groupName == QBX.PlayerData[zoneInfo.type].name and QBX.PlayerData[zoneInfo.type].isboss
@@ -211,17 +211,17 @@ local function createZone(zoneInfo)
             debug = config.debugPoly,
             onEnter = function()
                 if zoneInfo.groupName == QBX.PlayerData[zoneInfo.type].name and QBX.PlayerData[zoneInfo.type].isboss then
-                    lib.showTextUI(zoneInfo.type == 'gang' and locale('menu.gang_management') or locale('menu.boss_management'))
+                    exports['jg-textui']:ShowText(zoneInfo.type == 'gang' and locale('menu.gang_management') or locale('menu.boss_management')) -- Updated to use jg-textui
                 end
             end,
             onExit = function()
-                lib.hideTextUI()
+                exports['jg-textui']:HideText() -- Updated to use jg-textui
             end,
             inside = function()
                 if IsControlJustPressed(0, 51) then -- E
                     if zoneInfo.groupName == QBX.PlayerData[zoneInfo.type].name and QBX.PlayerData[zoneInfo.type].isboss then
                         OpenBossMenu(zoneInfo.type)
-                        lib.hideTextUI()
+                        exports['jg-textui']:HideText() -- Updated to use jg-textui
                     end
                 end
             end

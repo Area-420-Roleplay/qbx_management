@@ -14,6 +14,7 @@ shared_scripts {
 client_scripts {
     '@qbx_core/modules/playerdata.lua',
     'client/main.lua',
+    '@sleepless_interact/init.lua',
 }
 
 server_scripts {
